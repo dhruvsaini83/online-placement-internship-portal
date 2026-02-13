@@ -1,0 +1,76 @@
+<% layout("/layouts/boilerplate") -%>
+<div class="allListing">
+   <div id="scroll" class="icons mb-3 ">
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-house ms-3"></i>
+        <p>homes</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-city ms-4"></i>
+        <p>Iconic cities</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-cow ms-3"></i>
+        <p>Farms</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-snowflake ms-2"></i>
+        <p>Arctic</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-hotel ms-3"></i>
+        <p>Dammusi</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-binoculars ms-5"></i>
+        <p>Amazing views</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <span class="material-symbols-outlined ms-5">  park  </span>
+        <p class="google-icon">National parks</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <span class="material-symbols-outlined ms-4"> houseboat </span>
+        <p class="google-icon">Beachfront</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <span class="material-symbols-outlined "> sports_cricket  </span>
+        <p class="google-icon">Play</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-key ms-1 "></i>
+        <p>New</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <i class="fa-solid fa-tent ms-3"></i>
+        <p>Camping</p>
+      </div>
+      <div class="ms-1 " id="iconP">
+        <span class="material-symbols-outlined ms-5"> palette</span>
+        <p class="google-icon">Creative spaces</p>
+      </div>
+    </div>
+    <!-- <h3>All Listing</h3> -->
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 ">
+      <% for (let listing of allListings) {%> 
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+          <div class="card col" >
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-image " style="height: 15rem;">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+                <b>Owned by <%= listing.owner.username %></b> <br/>
+                <b><i><%= listing.title %></i></b> <br/>
+                <% if (listing && listing.price) { %>
+                       &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
+                     <% } else { %>
+                       Price not available
+                     <% } %>
+              </p>
+            </div>
+          </div>
+        </a>
+      <% } %>
+    </div>
+</div>
+            

@@ -1,5 +1,5 @@
-if(process.env.NODE_ENV != "production") {
-    require('dotenv').config(); 
+if (process.env.NODE_ENV != "production") {
+    require('dotenv').config();
 }
 
 const express = require("express");
@@ -15,24 +15,28 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
+const jobRoutes = require("./routes/jobs");
+const applicationRoutes = require("./routes/applications");
 const listingRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const dbUrl = process.env.ATLASDB_URL;
 
-main().then( () => {
+main().then(() => {
     console.log("connected to DB");
 }).catch(err => console.log(err));
 
 async function main() {
-   await mongoose.connect(dbUrl);
-} 
+    await mongoose.connect(dbUrl);
+}
+
+app.use("/jobs", jobRoutes);
+app.use("/", applicationRoutes);
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
@@ -47,17 +51,17 @@ const store = MongoStore.create({
 });
 
 store.on("error", () => {
-    console.log("ERROR in MONGO SESSION STORE",err);
+    console.log("ERROR in MONGO SESSION STORE", err);
 })
 
 const sessionOptions = {
     store,
-    secret:  process.env.SECRET,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
-        expires: Date.now() + 7*24 * 60 *60 * 1000,
-        maxAge: 7*24 * 60 *60 * 1000,
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
     },
 };
@@ -93,8 +97,8 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    let {statusCode = 500, message = "Something went wrong !"} = err;
-    res.status(statusCode).render("error.ejs", {message});
+    let { statusCode = 500, message = "Something went wrong !" } = err;
+    res.status(statusCode).render("error.ejs", { message });
     // res.status(statusCode).send(message);
 });
 
