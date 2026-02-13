@@ -1,0 +1,219 @@
+body{
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    /* min-width: 100vh; */
+    min-height: 100vh;
+}
+
+.container{
+    flex: 1;
+}
+
+/* Navbar */
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+
+#iconP{
+    padding: 1rem !important;
+}
+
+ #scroll {
+    display: flex;
+    overflow: scroll;
+    white-space: nowrap;
+  }
+
+
+  #scroll::-webkit-scrollbar {
+    width: 0;
+    height: 3px;
+  }
+  
+  #scroll::-webkit-scrollbar-thumb{
+    -webkit-border-radius:30px;
+    background-color: aqua;
+    overflow: hidden;
+  }
+
+
+
+/* footer */
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline ;
+}
+
+.f-info-links , .f-info-socials , .f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 2rem;
+}
+
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+.footer {
+    margin-top: auto; 
+    bottom: 0;
+}
+
+/* cards */
+.allListing{
+    margin: 1rem !important;
+}
+
+.listing-link{
+    text-decoration: none !important;
+}
+
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.review-card{
+    border: 0.1px solid rgba(0, 0, 0, 0.374) !important;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p{
+    font-weight: 400 !important;
+}
+
+.icons a{
+    text-decoration: none;
+    color: black;
+}
+
+.google-icon{
+    margin-top: -5px;
+}
+
+.icons a:hover{
+    text-decoration: underline;
+    color: #403b3b;
+}
+
+/* Card Effect */
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.6;
+    background-color: white;
+}
+
+/* new create */
+.add-btn{
+    color: #fe424d !important;
+    border: none !important;
+}
+
+/* Edit page */
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+    font-weight:bold !important;
+}
+
+/* Show Page */
+.show-img{
+    height: 35vh !important;
+}
+
+.icons, .btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.review-card{
+    margin-left: 1rem;
+}
+
+
+/* Map */
+#map { 
+    height: 300px;
+    width: 100vh;
+}
+
+@media screen and (max-width: 450px) {
+    .review-card {
+        width: 100% !important; 
+        margin: auto !important;
+      }
+  
+  }
+
+@media screen and (max-width: 775px) {
+    .col-8, .offset-2 {
+      width: 100% !important; 
+      margin: auto !important;
+    }
+
+    .edit-btn {
+        margin: 0.4rem 0.1em !important;
+        width: auto !important; 
+        height: 38px;
+      }
+
+    .offset-4 {
+        margin: 0.4rem !important;
+        width: 4rem;  
+    }
+    
+    #map { 
+        height: 300px;
+        width: 100%;
+        margin: auto !important;
+    }
+  }
+
+
+
+
+
