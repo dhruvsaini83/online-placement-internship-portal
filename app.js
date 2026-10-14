@@ -17,11 +17,11 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const jobRoutes = require("./routes/jobs");
 const applicationRoutes = require("./routes/applications");
-const listingRouter = require("./routes/listing.js");
-const reviewsRouter = require("./routes/review.js");
+
 const userRouter = require("./routes/user.js");
 
-const dbUrl = process.env.ATLASDB_URL;
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/placementportal";
+
 
 main().then(() => {
     console.log("connected to DB");
@@ -50,7 +50,7 @@ const store = MongoStore.create({
     touchAfter: 24 * 3600,
 });
 
-store.on("error", () => {
+store.on("error", (err) => {
     console.log("ERROR in MONGO SESSION STORE", err);
 })
 
@@ -58,7 +58,7 @@ const sessionOptions = {
     store,
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
@@ -88,8 +88,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use("/listings", listingRouter);
-app.use("/listings/:id/reviews", reviewsRouter);
+
 app.use("/", userRouter);
 
 app.all("*", (req, res, next) => {
